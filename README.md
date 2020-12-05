@@ -3,12 +3,12 @@ Java version 8
 #How to
 Run as usual Spring boot application.
 
-to Search:
-(POST) /search/
-body as JSON should match structure List<SearchCriteria> 
-key (Picture fields values): {id, croppedPicture, author, camera, tags, fullPicture}
-value (any String without '%' cause operation can be 'MATCH')
-operation (Search Operation enum): {GREATER_THAN,
+<br />to Search:<br />
+(POST) /search/<br />
+Body as JSON should match structure List<SearchCriteria> <br />
+Key (Picture fields values): {id, croppedPicture, author, camera, tags, fullPicture}<br />
+Value (any String without '%' cause operation can be 'MATCH')<br />
+Operation (Search Operation enum): {GREATER_THAN,
                                         LESS_THAN,
                                         GREATER_THAN_EQUAL,
                                         LESS_THAN_EQUAL,
@@ -18,7 +18,7 @@ operation (Search Operation enum): {GREATER_THAN,
                                         MATCH_START,
                                         MATCH_END,
                                         IN,
-                                        NOT_IN}  
+                                        NOT_IN}  <br /><br />
 Example request:
 [
     {
@@ -32,6 +32,7 @@ Example request:
         "operation": "EQUAL"
     }
 ]
+ <br /><br />
 Example response:
 [
     {
