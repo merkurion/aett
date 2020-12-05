@@ -3,7 +3,7 @@ Java version 8
 #How to
 Run as usual Spring boot application.
 
-<br />to Search:<br />
+<br />to Search:<br /><br />
 (POST) /search/<br />
 Body as JSON should match structure List<SearchCriteria> <br />
 Key (Picture fields values): {id, croppedPicture, author, camera, tags, fullPicture}<br />
