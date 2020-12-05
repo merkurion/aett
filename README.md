@@ -5,9 +5,13 @@ Run as usual Spring boot application.
 
 to Search:
 (POST) /search/
+
 body as JSON should match structure List<SearchCriteria> 
+  
 key (Picture fields values): {id, croppedPicture, author, camera, tags, fullPicture}
+
 value (any String without '%' cause operation can be 'MATCH')
+
 operation (Search Operation enum): {GREATER_THAN,
                                         LESS_THAN,
                                         GREATER_THAN_EQUAL,
