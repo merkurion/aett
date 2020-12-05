@@ -1,11 +1,11 @@
 package com.tarasvakaryuk.aett.service;
 
 import com.tarasvakaryuk.aett.configuration.AuthConfig;
+import com.tarasvakaryuk.aett.dao.PictureRepository;
 import com.tarasvakaryuk.aett.dto.AuthResponse;
 import com.tarasvakaryuk.aett.dto.PageDetails;
 import com.tarasvakaryuk.aett.dto.Picture;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -18,11 +18,25 @@ import java.util.ArrayList;
 public class ImagesService {
 
     final AuthConfig authConfig;
+    final PictureRepository pictureRepository;
 
-    @Value(value = "${ae.api.images.url}")
-    private String apiImagesUrl;
+    @Value(value = "${ae.api.images.page.url}")
+    private String apiImagesPageUrl;
 
-    public ArrayList<Picture> getAllPictures(Integer pageNumber) {
+    @Value(value = "${ae.api.images.details.url}")
+    private String apiImagesDetailsUrl;
+
+    public void uploadImages(){
+        ArrayList<Picture> pictures = getPictures(null);
+        for (Picture picture:
+             pictures) {
+
+            picture = getPictureDetails(picture.getId());
+            pictureRepository.save(picture);
+        }
+    }
+
+    public ArrayList<Picture> getPictures(Integer pageNumber) {
         if(pageNumber == null) pageNumber = 1;
         ArrayList<Picture> pictures = new ArrayList<>();
         while (true) {
@@ -33,7 +47,7 @@ public class ImagesService {
             httpHeaders.setBearerAuth(authResponse.getToken());
             HttpEntity<String> request = new HttpEntity<>("body", httpHeaders);
             ResponseEntity<PageDetails> response = restTemplate
-                    .exchange(apiImagesUrl+pageNumber, HttpMethod.GET, request, PageDetails.class);
+                    .exchange(apiImagesPageUrl +pageNumber, HttpMethod.GET, request, PageDetails.class);
             PageDetails pageDetails = response.getBody();
             pictures.addAll(pageDetails.getPictures());
             if (!pageDetails.getHasMore()){
@@ -43,5 +57,18 @@ public class ImagesService {
         }
 
         return pictures;
+    }
+
+    public Picture getPictureDetails(String pictureId) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        AuthResponse authResponse = authConfig.getAuth();
+        httpHeaders.setBearerAuth(authResponse.getToken());
+        HttpEntity<String> request = new HttpEntity<>("body", httpHeaders);
+        ResponseEntity<Picture> response = restTemplate
+                .exchange(apiImagesDetailsUrl + pictureId, HttpMethod.GET, request, Picture.class);
+
+        return response.getBody();
     }
 }

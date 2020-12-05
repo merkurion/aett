@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class AuthResponse {
 
+    private Boolean auth;
     private String token;
 
 }
