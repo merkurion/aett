@@ -5,8 +5,11 @@ import com.tarasvakaryuk.aett.dao.PictureRepository;
 import com.tarasvakaryuk.aett.dto.AuthResponse;
 import com.tarasvakaryuk.aett.dto.PageDetails;
 import com.tarasvakaryuk.aett.dto.Picture;
+import com.tarasvakaryuk.aett.specs.PictureSpecification;
+import com.tarasvakaryuk.aett.specs.SearchCriteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -70,5 +73,15 @@ public class ImagesService {
                 .exchange(apiImagesDetailsUrl + pictureId, HttpMethod.GET, request, Picture.class);
 
         return response.getBody();
+    }
+
+    public ArrayList<Picture> searchPictures(ArrayList<SearchCriteria> searchTerm) {
+        PictureSpecification pictureSpecification = new PictureSpecification();
+        for (SearchCriteria searchCriteria:
+                searchTerm) {
+            pictureSpecification.add(searchCriteria);
+        }
+
+        return (ArrayList<Picture>) pictureRepository.findAll(pictureSpecification);
     }
 }

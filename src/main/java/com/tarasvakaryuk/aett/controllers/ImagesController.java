@@ -19,14 +19,14 @@ public class ImagesController {
     final ImagesService imagesService;
 
     @ApiOperation(value = "Get images", response = ArrayList.class, httpMethod = "GET", consumes = "application/json", produces = "application/json", protocols = "http")
-    @RequestMapping(method = RequestMethod.GET, value = "")
+    @GetMapping(value = "")
     @ResponseBody
     public ArrayList<Picture> getPictures(@RequestParam(required = false) Integer pageNumber) {
         return imagesService.getPictures(pageNumber);
     }
 
     @ApiOperation(value = "Get picture details", response = ArrayList.class, httpMethod = "GET", consumes = "application/json", produces = "application/json", protocols = "http")
-    @RequestMapping(method = RequestMethod.GET, value = "/{pictureId}")
+    @GetMapping(value = "/{pictureId}")
     @ResponseBody
     public Picture getPictureDetails(@PathVariable("pictureId") String pictureId) {
         return imagesService.getPictureDetails(pictureId);
