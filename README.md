@@ -4,12 +4,12 @@ Java version 8
 Run as usual Spring boot application.
 
 to Search:
-(POST) /search/ <br />
+(POST) /search/ \
 
-body as JSON should match structure List<SearchCriteria> <br />
+body as JSON should match structure List<SearchCriteria> \
   
-key (Picture fields values): {id, croppedPicture, author, camera, tags, fullPicture}<br />
-value (any String without '%' cause operation can be 'MATCH')<br />
+key (Picture fields values): {id, croppedPicture, author, camera, tags, fullPicture}\
+value (any String without '%' cause operation can be 'MATCH')\
 operation (Search Operation enum): {GREATER_THAN,
                                         LESS_THAN,
                                         GREATER_THAN_EQUAL,
@@ -20,7 +20,7 @@ operation (Search Operation enum): {GREATER_THAN,
                                         MATCH_START,
                                         MATCH_END,
                                         IN,
-                                        NOT_IN} <br /><br />
+                                        NOT_IN} \\
                                         
 Example request:
 [
