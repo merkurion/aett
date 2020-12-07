@@ -1,4 +1,4 @@
-package com.tarasvakaryuk.aett.dto;
+package com.tarasvakaryuk.aett.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

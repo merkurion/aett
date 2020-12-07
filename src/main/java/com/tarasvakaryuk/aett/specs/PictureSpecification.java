@@ -1,6 +1,6 @@
 package com.tarasvakaryuk.aett.specs;
 
-import com.tarasvakaryuk.aett.dto.Picture;
+import com.tarasvakaryuk.aett.entity.Picture;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -18,6 +18,11 @@ public class PictureSpecification implements Specification<Picture> {
 
     public PictureSpecification() {
         this.list = new ArrayList<>();
+    }
+
+    public PictureSpecification(List<SearchCriteria> searchCriteria) {
+        this.list = new ArrayList<>();
+        list.addAll(searchCriteria);
     }
 
     public void add(SearchCriteria criteria) {

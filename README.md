@@ -1,7 +1,13 @@
 Java version 8
 
-#How to
-Run as usual Spring boot application.
+#How to<br />
+Run as usual Spring boot application or cmd to root directory of a project and type:<br />
+"java -jar aett-1.0.0.jar"<br />
+
+H2 console http://localhost:8080/h2-console/<br />
+sa/password<br /><br />
+
+project running by default on http://localhost:8080<br /><br />
 
 <br />to Search:<br /><br />
 (POST) /search/<br />

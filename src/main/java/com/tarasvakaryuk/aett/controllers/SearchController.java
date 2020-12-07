@@ -1,6 +1,6 @@
 package com.tarasvakaryuk.aett.controllers;
 
-import com.tarasvakaryuk.aett.dto.Picture;
+import com.tarasvakaryuk.aett.entity.Picture;
 import com.tarasvakaryuk.aett.service.ImagesService;
 import com.tarasvakaryuk.aett.specs.SearchCriteria;
 import io.swagger.annotations.Api;
@@ -17,9 +17,9 @@ import java.util.ArrayList;
 @RequestMapping(value = "/search")
 public class SearchController {
 
-    final ImagesService imagesService;
+    private final ImagesService imagesService;
 
-    @ApiOperation(value = "Search images", response = ArrayList.class, httpMethod = "GET", consumes = "application/json", produces = "application/json", protocols = "http")
+    @ApiOperation(value = "Search images ", response = ArrayList.class, httpMethod = "GET", consumes = "application/json", produces = "application/json", protocols = "http")
     @PostMapping(value = "")
     @ResponseBody
     public ArrayList<Picture> searchPictures(@RequestBody ArrayList<SearchCriteria> searchTerm) {

@@ -1,7 +1,7 @@
 package com.tarasvakaryuk.aett.service;
 
-import com.tarasvakaryuk.aett.dto.AuthRequest;
-import com.tarasvakaryuk.aett.dto.AuthResponse;
+import com.tarasvakaryuk.aett.entity.AuthRequest;
+import com.tarasvakaryuk.aett.entity.AuthResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
